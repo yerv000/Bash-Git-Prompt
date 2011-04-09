@@ -4,13 +4,13 @@ A Bash script to add git info to the shell prompt.
 
 Installation
 
-Copy the git-prompt.sh file to you home directory.
+Copy the git_prompt.sh file to you home directory.
 
-Change mode to executable: chmod +x ~/git-prompt.sh
+Change mode to executable: chmod +x ~/git_prompt.sh
 
 Add the following line to your ~/.bashrc file:
 
-source $HOME/git-prompt.sh
+source $HOME/git_prompt.sh
 
 If in a terminal shell then exit and open a new shell.
 
@@ -29,5 +29,8 @@ user@system(89m|master|?AM)$
 master: On branch master
 
 ?AM: Git file flags. '?' for untracked files. 'A' for newly added uncommited files. 'M' for modified uncommited files.
+
+
+Test on Ubuntu 10.04.
 
 Enjoy!
