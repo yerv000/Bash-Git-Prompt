@@ -1,0 +1,33 @@
+Bash Git Prompt
+
+A Bash script to add git info to the shell prompt.
+
+Installation
+
+Copy the git-prompt.sh file to you home directory.
+
+Change mode to executable: chmod +x ~/git-prompt.sh
+
+Add the following line to your ~/.bashrc file:
+
+source $HOME/git-prompt.sh
+
+If in a terminal shell then exit and open a new shell.
+
+
+Usage
+
+Bash shell prompt will change to display repository information when a change directory is done into a git repository.
+
+The prompt will display various info, for example:
+
+user@system(89m|master|?AM)$
+
+89m: Last commit was 89 minutes ago. Color will go from green to yellow to green
+     depending on how long ago was the commit. Green<60m<Yellow<120m<Red
+
+master: On branch master
+
+?AM: Git file flags. '?' for untracked files. 'A' for newly added uncommited files. 'M' for modified uncommited files.
+
+Enjoy!
