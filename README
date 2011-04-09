@@ -31,6 +31,6 @@ master: On branch master
 ?AM: Git file flags. '?' for untracked files. 'A' for newly added uncommited files. 'M' for modified uncommited files.
 
 
-Test on Ubuntu 10.04.
+Tested on Ubuntu 10.04.
 
 Enjoy!
