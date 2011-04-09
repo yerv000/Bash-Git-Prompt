@@ -8,7 +8,7 @@ Copy the git_prompt.sh file to you home directory.
 
 Change mode to executable: chmod +x ~/git_prompt.sh
 
-Add the following line to your ~/.bashrc file:
+Add the following line to your ~/.bashrc file all the way at the bottom:
 
 source $HOME/git_prompt.sh
 
