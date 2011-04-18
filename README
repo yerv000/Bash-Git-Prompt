@@ -8,20 +8,8 @@ Clone the repository into your home directory.
 
 Add the following line to your ~/.bashrc file all the way at the bottom:
 
+source $HOME/Bash-Git-Prompt/git_remote_check.sh
 source $HOME/Bash-Git-Prompt/git_prompt.sh
-
-If in a terminal shell then exit and open a new shell.
-
-
-Alternative Installation method
-
-Copy the file git_prompt.sh into your home directory or alternate location.
-
-Add the following line to your ~/.bashrc file all the way at the botton:
-
-source $HOME/git_prompt.sh
-
-Remember to adjust the path to source above if git_prompt.sh is copied to an alternate directory location.
 
 If in a terminal shell then exit and open a new shell.
 
@@ -40,6 +28,7 @@ master: On branch master
 
 ?AM: Git file flags. '?' for untracked files. 'A' for newly added uncommited files. 'M' for modified uncommited files.
 
+(up to date) : local tracking branch is up to date with remote.
 
 Tested on Ubuntu 10.04.
 
