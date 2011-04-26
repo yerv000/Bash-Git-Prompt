@@ -1,3 +1,8 @@
+function rd {
+  git branch > /dev/null 2>&1 || return 1
+  cd "$(git rev-parse --show-cdup)"
+}
+
 function set_git_prompt {
   local last_commit_in_unix_time
   local now_in_unix_time

@@ -6,7 +6,7 @@ Preferred Installation Method
 
 Clone the repository into your home directory.
 
-Add the following line to your ~/.bashrc file all the way at the bottom:
+Add the following lines to your ~/.bashrc file all the way at the bottom:
 
 source $HOME/Bash-Git-Prompt/git_remote_check.sh
 source $HOME/Bash-Git-Prompt/git_prompt.sh
@@ -15,11 +15,11 @@ If in a terminal shell then exit and open a new shell.
 
 Usage
 
-Bash shell prompt will change to display repository information when a change directory is done into a git repository.
+Bash shell prompt will change to display repository information when a change directory is done into a git working tree.
 
 The prompt will display various info, for example:
 
-user@system(89m|master|?AM)$
+user@system(89m|master|?AM)(up to date)$
 
 89m: Last commit was 89 minutes ago. Color will go from green to yellow to red
      depending on how long ago a commit was performed. Green<60m<Yellow<120m<Red
@@ -28,7 +28,9 @@ master: On branch master
 
 ?AM: Git file flags. '?' for untracked files. 'A' for newly added uncommited files. 'M' for modified uncommited files.
 
-(up to date) : local tracking branch is up to date with remote.
+(up to date) : local tracking branch is up to date with remote. Note that every 10th ENTER a remote check is done.
+
+Inside a git working tree use 'rd' to cd all the way to the root directory of the project. 
 
 Tested on Ubuntu 10.04.
 
