@@ -10,6 +10,8 @@ function set_git_prompt {
   local flags
   local seconds_since_last_commit
   local minutes_since_last_commit
+  local days_since_last_commit
+  local minutes_so_far_today
   local branch
   last_commit_in_unix_time=$(git log "HEAD" --pretty=format:%ct 2> /dev/null | sort | tail -n1)
   now_in_unix_time=$(date +%s)
@@ -23,8 +25,12 @@ function set_git_prompt {
       minutes_since_last_commit="\[\e[0;32m\]${minutes_since_last_commit}m\[\e[0m\]|"
     elif ((minutes_since_last_commit < 120)); then
       minutes_since_last_commit="\[\e[0;33m\]${minutes_since_last_commit}m\[\e[0m\]|"
-    else
+    elif ((minutes_since_last_commit < 1440)); then
       minutes_since_last_commit="\[\e[0;31m\]${minutes_since_last_commit}m\[\e[0m\]|"
+    else
+      days_since_last_commit=$(($minutes_since_last_commit/1440))
+      minutes_so_far_today=$(($minutes_since_last_commit - $days_since_last_commit*1440))
+      minutes_since_last_commit="\[\e[0;31m\]${days_since_last_commit}d \[\e[0;31m\]${minutes_so_far_today}m\[\e[0m\]|"
     fi
   else
     minutes_since_last_commit=""
