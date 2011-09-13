@@ -36,7 +36,8 @@ function set_git_prompt {
     minutes_since_last_commit=""
   fi
   if [ $branch ] || [ $flags  ]; then
-    git_remote_check
+    set +m
+    git_remote_check &
     if [ $branch ]; then
       branch="\[\e[0;36m\]${branch}\[\e[0m\]"
     else
