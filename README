@@ -23,14 +23,20 @@ user@system(89m|master|?AM)(up to date)$
 
 89m: Last commit was 89 minutes ago. Color will go from green to yellow to red
      depending on how long ago a commit was performed. Green<60m<Yellow<120m<Red
+     If minutes span more than one day then the number of days are displayed as well.
 
 master: On branch master
 
 ?AM: Git file flags. '?' for untracked files. 'A' for newly added uncommited files. 'M' for modified uncommited files.
 
-(up to date) : local tracking branch is up to date with remote. Note that every 10th ENTER a remote check is done.
+(up to date) : local tracking branch is up to date with remote.
 
-Inside a git working tree use 'rd' to cd all the way to the root directory of the project. 
+Remote check is done in the background after 5 minutes have passed since the last check and a carriage return is
+hit in the bash shell. If a connection problem exists the user is notified.
+
+To allow the background remote check a temporary file is created/deleted in /tmp directory.
+
+Inside a git working tree use 'rd' to cd all the way to the root directory of the project.
 
 Tested on Ubuntu 10.04.
 

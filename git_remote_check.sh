@@ -1,19 +1,14 @@
 function git_remote_check {
+  local bgp_git_remote_status
   BGP_GIT_BRANCH=$(git branch --no-color 2> /dev/null | grep '*' | sed 's/\*//g' | sed 's/ //g')
-  export BGP_GIT_BRANCH
   BGP_GIT_REMOTE=$(git remote show 2> /dev/null | sed 's/ //g')
-  export BGP_GIT_REMOTE
-  if [ -z "$BGP_CR_COUNT" ]; then
-    BGP_CR_COUNT="1"
-    export BGP_CR_COUNT
+  bgp_git_remote_status=$(git remote show $BGP_GIT_REMOTE 2>&1)
+  if [[ $bgp_git_remote_status == *Connection* ]]; then
+    BGP_GIT_REMOTE_STATUS="\[\e[0;31m\](Connection problem)\[\e[0m\]"
   else
-    BGP_CR_COUNT=$(($BGP_CR_COUNT + 1))
-    export BGP_CR_COUNT
+    BGP_GIT_REMOTE_STATUS=$(echo "$bgp_git_remote_status" | grep " $BGP_GIT_BRANCH " | grep "pushes to" | grep -o "(.*)")
   fi
-  if ((BGP_CR_COUNT > 10)); then
-    BGP_GIT_REMOTE_STATUS=$(git remote show $BGP_GIT_REMOTE 2> /dev/null | grep " $BGP_GIT_BRANCH " | grep "pushes to" | grep -o "(.*)")
-    export BGP_GIT_REMOTE_STATUS
-    BGP_CR_COUNT="1"
-    export BGP_CR_COUNT
-  fi
+  echo "BGP_GIT_BRANCH=$BGP_GIT_BRANCH" > $BGP_TMP_FILE
+  echo "BGP_GIT_REMOTE=$BGP_GIT_REMOTE" >> $BGP_TMP_FILE
+  echo "BGP_GIT_REMOTE_STATUS=\"$BGP_GIT_REMOTE_STATUS\"" >> $BGP_TMP_FILE
 }

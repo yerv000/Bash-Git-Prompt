@@ -13,8 +13,10 @@ function set_git_prompt {
   local days_since_last_commit
   local minutes_so_far_today
   local branch
+  local seconds_since_last_remote_check
   last_commit_in_unix_time=$(git log "HEAD" --pretty=format:%ct 2> /dev/null | sort | tail -n1)
   now_in_unix_time=$(date +%s)
+  seconds_since_last_remote_check=$((now_in_unix_time - $BGP_LAST_REMOTE_CHECK))
   branch=$(git branch --no-color 2> /dev/null | grep '*' | sed 's/\*//g' | sed 's/ //g')
   tmp_flags=$(git status --porcelain 2> /dev/null | cut -c1-2 | sed 's/ //g' | cut -c1 | sort | uniq)
   flags="$(echo $tmp_flags | sed 's/ //g')"
@@ -36,7 +38,22 @@ function set_git_prompt {
     minutes_since_last_commit=""
   fi
   if [ $branch ] || [ $flags  ]; then
-    git_remote_check
+    if [[ "$BGP_GIT_ROOT_DIRECTORY" != $(git rev-parse --show-toplevel) ]]; then
+      BGP_GIT_ROOT_DIRECTORY=$(git rev-parse --show-toplevel)
+      BGP_LAST_REMOTE_CHECK=$((`date +%s` - 300))
+      BGP_GIT_BRANCH=""
+      BGP_GIT_REMOTE=""
+      BGP_GIT_REMOTE_STATUS=""
+    fi
+    if [[ -e "$BGP_TMP_FILE" ]]; then
+        source "$BGP_TMP_FILE"
+        rm $BGP_TMP_FILE
+    fi
+    if ((seconds_since_last_remote_check > 60)); then
+      BGP_LAST_REMOTE_CHECK=$(date +%s)
+      set +m
+      git_remote_check &
+    fi
     if [ $branch ]; then
       branch="\[\e[0;36m\]${branch}\[\e[0m\]"
     else
@@ -51,5 +68,11 @@ function set_git_prompt {
     PS1=$BGP_ORIGINAL_PS1
   fi
 }
+
+BGP_LAST_REMOTE_CHECK=$((`date +%s` - 300))
+BGP_GIT_ROOT_DIRECTORY=""
+BGP_TMP_FILE="/tmp/BGP_$BASHPID"
+export BGP_TMP_FILE
+
 BGP_ORIGINAL_PS1=$PS1
 PROMPT_COMMAND=set_git_prompt
