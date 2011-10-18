@@ -49,10 +49,14 @@ function set_git_prompt {
         source "$BGP_TMP_FILE"
         rm $BGP_TMP_FILE
     fi
-    if ((seconds_since_last_remote_check > 60)); then
-      BGP_LAST_REMOTE_CHECK=$(date +%s)
-      set +m
-      git_remote_check &
+    # git_remote_check is optional.
+    # To use it, source git_remote_check
+    if [ "" != "$(type git_remote_check 2>/dev/null)" ]; then
+      if ((seconds_since_last_remote_check > 60)); then
+        BGP_LAST_REMOTE_CHECK=$(date +%s)
+        set +m
+        git_remote_check &
+      fi
     fi
     if [ $branch ]; then
       branch="\[\e[0;36m\]${branch}\[\e[0m\]"
