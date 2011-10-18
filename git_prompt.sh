@@ -51,7 +51,7 @@ function set_git_prompt {
     fi
     # git_remote_check is optional.
     # To use it, source git_remote_check
-    if [ "" != "$(which git_remote_check)" ]; then
+    if [ "" != "$(type git_remote_check 2>/dev/null)" ]; then
       if ((seconds_since_last_remote_check > 60)); then
         BGP_LAST_REMOTE_CHECK=$(date +%s)
         set +m
