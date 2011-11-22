@@ -11,6 +11,10 @@ Add the following lines to your ~/.bashrc file all the way at the bottom:
 source $HOME/Bash-Git-Prompt/git_remote_check.sh
 source $HOME/Bash-Git-Prompt/git_prompt.sh
 
+If remote tracking is not required then only add the following line to your ~/.bashrc all the way at the bottom:
+
+source $HOME/Bash-Git-Prompt/git_prompt.sh
+
 If in a terminal shell then exit and open a new shell.
 
 Usage
