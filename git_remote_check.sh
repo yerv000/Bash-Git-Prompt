@@ -1,7 +1,7 @@
 function git_remote_check {
   local bgp_git_remote_status
   BGP_GIT_BRANCH=$(git branch --no-color 2> /dev/null | grep '*' | sed 's/\*//g' | sed 's/ //g')
-  BGP_GIT_REMOTE=$(git remote show 2> /dev/null | sed 's/ //g')
+  BGP_GIT_REMOTE=$(git config -l 2> /dev/null | grep "branch.*remote" | sed 's/branch.*remote=//g')
   bgp_git_remote_status=$(git remote show $BGP_GIT_REMOTE 2>&1)
   if [[ $bgp_git_remote_status == *Connection* ]]; then
     BGP_GIT_REMOTE_STATUS="\[\e[0;31m\](Connection problem)\[\e[0m\]"
