@@ -6,19 +6,21 @@ Preferred Installation Method
 
 Clone the repository into your home directory.
 
-For Ubuntu: Add the following two source lines to your ~/.bashrc file all the way at the bottom:
-
-source $HOME/Bash-Git-Prompt/git_remote_check.sh
-source $HOME/Bash-Git-Prompt/git_prompt.sh
-
-For Mac OS X: By default a .profile file does not exist in the home directory. Create one
-using "touch ~/.profile" if it does not exist then add the same two lines to it as for Linux:
-
-source $HOME/Bash-Git-Prompt/git_remote_check.sh
-source $HOME/Bash-Git-Prompt/git_prompt.sh
-
-If remote tracking is not required then only add the following line to your ~/.bashrc or ~/.profile all
+For Ubuntu: Add the following two source lines to your ~/.bashrc file all
 the way at the bottom:
+
+source $HOME/Bash-Git-Prompt/git_remote_check.sh
+source $HOME/Bash-Git-Prompt/git_prompt.sh
+
+For Mac OS X: By default a .profile file does not exist in the home directory.
+Create one using "touch ~/.profile" if it does not exist then add the same
+two lines to it as for Linux:
+
+source $HOME/Bash-Git-Prompt/git_remote_check.sh
+source $HOME/Bash-Git-Prompt/git_prompt.sh
+
+If remote tracking is not required then only add the following line to your
+~/.bashrc or ~/.profile all the way at the bottom:
 
 source $HOME/Bash-Git-Prompt/git_prompt.sh
 
@@ -26,7 +28,8 @@ If in a terminal shell then exit and open a new shell.
 
 Usage
 
-Bash shell prompt will change to display repository information when a change directory is done into a git working tree.
+Bash shell prompt will change to display repository information when a change
+directory is done into a git working tree.
 
 The prompt will display various info, for example:
 
@@ -38,12 +41,14 @@ user@system(89m|master|?AM)(up to date)$
 
 master: On branch master
 
-?AM: Git file flags. '?' for untracked files. 'A' for newly added uncommited files. 'M' for modified uncommited files.
+?AM: Git file flags. '?' for untracked files. 'A' for newly added uncommited files.
+'M' for modified uncommited files.
 
 (up to date) : local tracking branch is up to date with remote.
 
-Remote check is done in the background after 5 minutes have passed since the last check and a carriage return is
-hit in the bash shell. If a connection problem exists the user is notified.
+Remote check is done in the background after 5 minutes have passed since the last
+check and a carriage return is hit in the bash shell. If a connection problem exists
+the user is notified.
 
 To allow the background remote check a temporary file is created/deleted in /tmp directory.
 
