@@ -6,12 +6,19 @@ Preferred Installation Method
 
 Clone the repository into your home directory.
 
-Add the following lines to your ~/.bashrc file all the way at the bottom:
+For Ubuntu: Add the following two source lines to your ~/.bashrc file all the way at the bottom:
 
 source $HOME/Bash-Git-Prompt/git_remote_check.sh
 source $HOME/Bash-Git-Prompt/git_prompt.sh
 
-If remote tracking is not required then only add the following line to your ~/.bashrc all the way at the bottom:
+For Mac OS X: By default a .profile file does not exist in the home directory. Create one
+using "touch ~/.profile" if it does not exist then add the same two lines to it as for Linux:
+
+source $HOME/Bash-Git-Prompt/git_remote_check.sh
+source $HOME/Bash-Git-Prompt/git_prompt.sh
+
+If remote tracking is not required then only add the following line to your ~/.bashrc or ~/.profile all
+the way at the bottom:
 
 source $HOME/Bash-Git-Prompt/git_prompt.sh
 
@@ -43,5 +50,6 @@ To allow the background remote check a temporary file is created/deleted in /tmp
 Inside a git working tree use 'rd' to cd all the way to the root directory of the project.
 
 Tested on Ubuntu 10.04.
+Tested on Mac OS X Lion.
 
 Enjoy!
